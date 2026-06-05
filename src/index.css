@@ -1,0 +1,22 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+.fade-mask {
+    -webkit-mask-image:
+        linear-gradient(to bottom, transparent, black 20%, black 80%, transparent),
+        linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    -webkit-mask-composite: intersect;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: cover;
+
+    mask-image:
+        linear-gradient(to bottom, transparent, black 20%, black 80%, transparent),
+        linear-gradient(to right, transparent, black 20%, black 80%, transparent);
+    mask-composite: intersect;
+    mask-repeat: no-repeat;
+    mask-size: cover;
+}
