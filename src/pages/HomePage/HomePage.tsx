@@ -1,12 +1,12 @@
 import { useState } from "react"
-import NavBar from "../NavBar"
-import MainBanner from "./MainBanner"
-import ModuleList from "./ModuleList"
-import ExploreList from "./ExploreList"
-import type { Module } from "../ModuleComponents/Module"
+import NavBar from "../../components/NavBar"
+import MainBanner from "../../components/Home/MainBanner"
+import ModuleList from "../../components/Home/ModuleList"
+import ExploreList from "../../components/Home/ExploreList"
+import type { Module } from "../../components/ModuleComponents/Module"
 import bannerImg from "../../assets/banner.jpg"
-import Footer from "../Footer"
-import { socialMedia } from "../socialData"
+import Footer from "../../components/Footer"
+import { socialMedia } from "../../components/socialData"
 
 interface HomeProps {
     modules: Module[]
@@ -16,9 +16,7 @@ function HomePage({ modules }: HomeProps) {
     const [recommendedModules] = useState<Module[]>(modules.filter(module => module.type === "Recommended"))
     const [popularModules] = useState<Module[]>(modules.filter(module => module.type === "Popular"))
     const [exploreModules] = useState<Module[]>(modules)
-
-
-
+    
     return (
         <>
             <NavBar />
