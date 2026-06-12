@@ -1,6 +1,6 @@
 import type { Section } from "./Section";
 import type { Tag } from "./Tag";
-import type { Details } from "./Details";
+//import type { Details } from "./Details";
 import moduleImg from "../../assets/Module.png";
 
 export interface Module {
@@ -11,7 +11,10 @@ export interface Module {
     type: "Default" | "Recommended" | "Popular",
     sections: Section[],
     tags: Tag[],
-    about: Details[]
+    difficulty: string,
+    language: string,
+    duration: number,
+    ageRange: string,
     views: number
 }
 
@@ -23,6 +26,9 @@ export const module1: Module = {
     type: "Default",
     sections: [],
     tags: [],
-    about: [],
-    views: 1
+    difficulty: "",
+    language: "",
+    duration: 0,
+    ageRange: "",
+    views: 0
 }

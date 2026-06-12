@@ -14,8 +14,12 @@ interface ModuleListProps {
 function ModuleList({ title, subtitle, modules }: ModuleListProps) {
     const [swiperInstance, setSwiperInstance] = useState<SwiperType | null>(null);
 
-    // If the list of modules is 3 or fewer, duplicate the list so Swiper loop has enough slides to loop in both directions
-    const slidesToRender = modules.length > 0 && modules.length <= 3 ? [...modules, ...modules] : modules;
+    // Swiper loop needs strictly more than slidesPerView * 2 slides (3 * 2 = 6).
+    // Triple the list when there are ≤ 3 modules so we always have ≥ 9 slides.
+    const slidesToRender = modules.length > 0 && modules.length <= 3
+        ? [...modules, ...modules, ...modules]
+        : modules;
+    const canLoop = slidesToRender.length > 6;
 
     return (
         <div className=" p-8 rounded-none font-sans select-none">
@@ -37,7 +41,7 @@ function ModuleList({ title, subtitle, modules }: ModuleListProps) {
                     <Swiper
                         spaceBetween={24}
                         slidesPerView={3}
-                        loop={true}
+                        loop={canLoop}
                         onSwiper={(swiper) => setSwiperInstance(swiper)}
                         className="w-full"
                     >
