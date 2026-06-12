@@ -6,30 +6,31 @@ import NotFoundPage from "./pages/NotFound/NotFoundPage"
 import Sections from "./pages/ModuleDetail/Sections"
 import Section from "./pages/ModuleDetail/Section"
 
-const { modules, loading, error } = useModules();
-const router = createBrowserRouter([{
-  path: '/',
-  element: <HomePage modules={modules} />,
-  errorElement: <NotFoundPage />
-}, {
-  path: '/profile/:userId',
-  element: <Profile></Profile>
-},
-{
-  path: '/sections',
-  element: <Sections />,
-  children:
-    [
-      {
-        path: ':sectionId',
-        element: <Section />
-      }
-    ]
-}
-])
+
 
 function App() {
-  
+  const { modules, loading, error } = useModules();
+  const router = createBrowserRouter([{
+    path: '/',
+    element: <HomePage modules={modules} />,
+    errorElement: <NotFoundPage />
+  }, {
+    path: '/profile/:userId',
+    element: <Profile></Profile>
+  },
+  {
+    path: '/sections',
+    element: <Sections />,
+    children:
+      [
+        {
+          path: ':sectionId',
+          element: <Section />
+        }
+      ]
+  }
+  ])
+
   if (loading) {
     return (
       <div className="min-h-screen bg-black text-white p-8 flex items-center justify-center">
