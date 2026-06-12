@@ -1,24 +1,21 @@
-import { useMemo } from "react"
-//Explicación use memo: UseState congela su estado en [], osea la primera vez se ejecuta el codigo de la funcion de useState y en las siguientes no se vuelve a ejecutar, es como un estado pero para funciones. 
-//Use effect congela su estado en [dependencia], osea la primera vez se ejecuta el codigo de useEffect y en las siguientes no se vuelve a ejecutar hasta que cambie la dependencia.|
-//UseMemo memoriza el estado de la funcion, osea la primera vez se ejecuta el codigo de la funcion de useMemo y en las siguientes no se vuelve a ejecutar hasta que cambie la dependencia.
+import { useState } from "react"
 import NavBar from "../NavBar"
 import MainBanner from "./MainBanner"
 import ModuleList from "./ModuleList"
 import ExploreList from "./ExploreList"
 import type { Module } from "../ModuleComponents/Module"
 import bannerImg from "../../assets/banner.jpg"
-import Footer from "../Footer"
-import { socialMedia } from "../socialData"
+import Footer from "../../components/Footer"
+import { socialMedia } from "../../components/socialData"
 
 interface HomeProps {
     modules: Module[]
 }
 
 function HomePage({ modules }: HomeProps) {
-    const recommendedModules = useMemo<Module[]>(() => modules.filter(module => module.type === "Recommended"), [modules])
-    const popularModules = useMemo<Module[]>(() => modules.filter(module => module.type === "Popular"), [modules])
-    const exploreModules = modules
+    const [recommendedModules] = useState<Module[]>(modules.filter(module => module.type === "Recommended"))
+    const [popularModules] = useState<Module[]>(modules.filter(module => module.type === "Popular"))
+    const [exploreModules] = useState<Module[]>(modules)
 
 
 
