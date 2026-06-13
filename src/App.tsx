@@ -5,11 +5,14 @@ import { createBrowserRouter, RouterProvider } from "react-router"
 import NotFoundPage from "./pages/NotFound/NotFoundPage"
 import Sections from "./pages/ModuleDetail/Sections"
 import Section from "./pages/ModuleDetail/Section"
+import ModulePreview from "./pages/ModuleDetail/ModulePreview"
+
 
 
 
 function App() {
   const { modules, loading, error } = useModules();
+
   const router = createBrowserRouter([{
     path: '/',
     element: <HomePage modules={modules} />,
@@ -28,6 +31,11 @@ function App() {
           element: <Section />
         }
       ]
+  },
+  {
+    path: "/modules/:id",
+    errorElement: <NotFoundPage />,
+    element: <ModulePreview />
   }
   ])
 
