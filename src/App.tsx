@@ -1,5 +1,5 @@
 import HomePage from "./pages/HomePage/HomePage"
-import Profile from "./pages/Profile/Profile"
+import Profile, { userLoader } from "./pages/Profile/Profile"
 import { useModules } from "./hooks/useModuleData"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import NotFoundPage from "./pages/NotFound/NotFoundPage"
@@ -9,6 +9,9 @@ import ModulePreview from "./pages/ModuleDetail/ModulePreview"
 
 
 
+import Register, { registerAction } from "./pages/Register/Register"
+import Login, { loginAction } from "./pages/Login/Login"
+import Tags, { tagsAction, tagsLoader } from "./pages/Register/Tags"
 
 function App() {
   const { modules, loading, error } = useModules();
@@ -19,7 +22,8 @@ function App() {
     errorElement: <NotFoundPage />
   }, {
     path: '/profile/:userId',
-    element: <Profile></Profile>
+    element: <Profile />,
+    loader: userLoader
   },
   {
     path: '/sections',
@@ -28,7 +32,7 @@ function App() {
       [
         {
           path: ':sectionId',
-          element: <Section />
+          element: <Section />,
         }
       ]
   },
@@ -36,7 +40,23 @@ function App() {
     path: "/modules/:id",
     errorElement: <NotFoundPage />,
     element: <ModulePreview />
-  }
+  },
+  {
+    path: '/register',
+    element: <Register />,
+    action: registerAction
+  },
+  {
+    path: '/login',
+    element: <Login />,
+    action: loginAction
+  },
+  {
+      path: '/tags/:userId',
+      element: <Tags/>,
+      loader: tagsLoader,
+      action: tagsAction
+    }
   ])
 
   if (loading) {
