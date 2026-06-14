@@ -1,4 +1,6 @@
 import { useMemo } from "react"
+import { useLoaderData } from "react-router-dom"
+
 import NavBar from "../../components/NavBar"
 import MainBanner from "../../components/Home/MainBanner"
 import ModuleList from "../../components/Home/ModuleList"
@@ -8,14 +10,12 @@ import bannerImg from "../../assets/banner.jpg"
 import Footer from "../../components/Footer"
 import { socialMedia } from "../../components/socialData"
 
-interface HomeProps {
-    modules: Module[]
-}
+function HomePage() {
+    const data = useLoaderData<any>()
 
-function HomePage({ modules }: HomeProps) {
-    const recommendedModules = useMemo<Module[]>(() => modules.filter(module => module.type === "Recommended"), [modules])
-    const popularModules = useMemo<Module[]>(() => modules.filter(module => module.type === "Popular"), [modules])
-    const exploreModules = modules
+    const recommendedModules = useMemo<Module[]>(() => data.modules.filter((module: Module) => module.type === "Recommended"), [data.modules])
+    const popularModules = useMemo<Module[]>(() => data.modules.filter((module: Module) => module.type === "Popular"), [data.modules])
+    const exploreModules = data.modules
 
 
 
@@ -38,6 +38,34 @@ function HomePage({ modules }: HomeProps) {
             </footer>
         </>
     )
+}
+
+export const modulesLoader = async () => {
+    const modulesData = await fetch(`http://localhost:3000/api/modules`)
+    const rawModules = await modulesData.json()
+    
+    const TYPE_MAP: Record<number, string> = {
+        1: "Default",
+        2: "Popular",
+        3: "Recommended",
+    }
+    
+    const modules = rawModules.map((raw: any) => ({
+        id: raw.id,
+        title: raw.title,
+        image: raw.image,
+        description: raw.description,
+        type: TYPE_MAP[raw.module_types_id] ?? "Default",
+        sections: [],
+        tags: [],
+        difficulty: raw.difficulty,
+        language: raw.language,
+        duration: raw.duration,
+        ageRange: raw.age_range,
+        views: raw.views,
+    }))
+    
+    return { modules }
 }
 
 export default HomePage
