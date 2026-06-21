@@ -2,6 +2,7 @@ import { useActionData, useNavigation } from "react-router";
 import { Form, useLoaderData, redirect } from "react-router-dom";
 import type { ActionFunctionArgs } from "react-router-dom";
 import type { Tag } from "../../types/tag";
+import NavBar from "../../components/NavBar";
 
 export default function Tags() {
     const data = useLoaderData<any>();
@@ -10,31 +11,67 @@ export default function Tags() {
     const isSubmitting = navigation.state === 'submitting';
 
     return (
-        <Form method="post">
-            <h2>Selecciona maximo 3 tags</h2>
+        <div>
+            <NavBar></NavBar>
 
-            {data.tags.map((tag: Tag) => (
-                <label key={tag.id}>
-                    <input
-                        type="checkbox"
-                        name="tagIds"
-                        value={tag.id}
-                    />
-                    {tag.name}
-                </label>
-            ))}
+            <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
+                <Form
+                    method="post"
+                    className="w-full max-w-md bg-white rounded-md border border-gray-300 px-10 py-20 justify-center flex flex-col gap-4"
+                >
+                    <div>
+                        <h2 className="text-2xl font-semibold text-gray-800 w-full text-center">
+                           What are your interests?
+                        </h2>
 
-            <button type="submit">
-                {isSubmitting ? 'Saving...' : 'Save' }
-            </button>
+                        <p className="text-sm text-gray-500 mt-1 mb-6 w-full text-center">
+                           Max. 3 tags
+                        </p>
+                    </div>
 
-            {actionData?.message && <p>{actionData.message}</p>}
 
-        </Form>
+                    <div className="flex flex-wrap gap-2 mb-6 justify-center">
+                        {data.tags.map((tag: Tag) => (
+                            <label key={tag.id} className="cursor-pointer">
+                                <input
+                                    type="checkbox"
+                                    name="tagIds"
+                                    value={tag.id}
+                                    className="peer hidden"
+                                />
+
+                                <span
+                                    className="
+                                    inline-block px-3 py-1.5 rounded-full
+                                    border border-gray-300 text-sm text-gray-700
+                                    transition-all duration-200
+                                    peer-checked:bg-blue-500
+                                    peer-checked:text-white
+                                    peer-checked:border-blue-600
+                                "
+                                >
+                                    {tag.name}
+                                </span>
+                            </label>
+                        ))}
+                    </div>
+
+                    {/* BUTTON */}
+                    <button type="submit" className="w-full bg-blue-500 p-3 rounded-md text-white transition-all duration-100 hover:bg-blue-600">{isSubmitting ? 'Saving...' : 'Save'}</button>
+
+
+                    {actionData?.message && (
+                        <p className="mt-4 text-sm text-red-500 text-center">
+                            {actionData.message}
+                        </p>
+                    )}
+                </Form>
+            </div>
+        </div>
     );
 }
 
-export const tagsLoader = async ({}) => {
+export const tagsLoader = async ({ }) => {
 
     const results = await fetch(
         `http://localhost:3000/api/tags`

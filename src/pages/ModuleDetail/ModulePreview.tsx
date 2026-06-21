@@ -75,13 +75,12 @@ function ModulePreview() {
 export const moduleLoader = async ({ params }: LoaderFunctionArgs) => {
     const moduleData = await fetch(`http://localhost:3000/api/modules/${params.id}`)
     const rawData = await moduleData.json()
-    const rawModule = rawData[0]
-    if (!rawModule) {
+    if (!rawData) {
         return { module: null }
     }
     const module = {
-        ...rawModule,
-        ageRange: rawModule.age_range
+        ...rawData,
+        ageRange: rawData.age_range
     }
     return { module }
 }

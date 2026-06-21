@@ -1,7 +1,17 @@
 import kophiLogo from "../assets/kophi.png"
 import userRound from "../assets/user-round.png"
+import { Link } from "react-router"
+import { getUser } from "../types/user";
+
 
 function NavBar() {
+
+    const activeUser = getUser();
+
+    const link = activeUser
+        ? `/profile/${activeUser.id}`
+        : "/login";
+
     return (
         <nav className="bg-background/80 fixed w-full z-50 top-0 border-b border-border border-b-[#949494] backdrop-blur-md transition-colors duration-300">
             {/*Main elements container*/}
@@ -30,9 +40,10 @@ function NavBar() {
                         </li>
                     </ul>
                     <div className="ml-7 flex items-center">
-                        <a href="/" className="flex flex-wrap items-center">
+                        <Link to={link}>
                             <img src={userRound} alt="User Profile" className="h-8 w-8 object-contain" />
-                        </a>
+                        </Link>
+
                     </div>
                 </div>
 
