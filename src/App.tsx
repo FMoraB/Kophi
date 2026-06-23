@@ -11,6 +11,7 @@ import ModulePreview, { moduleLoader } from "./pages/ModuleDetail/ModulePreview"
 import Register, { registerAction } from "./pages/Register/Register"
 import Login, { loginAction } from "./pages/Login/Login"
 import Tags, { tagsAction, tagsLoader } from "./pages/Register/Tags"
+import Chat, { chatbotLoader } from "./pages/Chatbot"
 
 function App() {
   const router = createBrowserRouter([{
@@ -55,6 +56,11 @@ function App() {
     element: <Tags />,
     loader: tagsLoader,
     action: tagsAction
+  },
+  {
+    path: '/chat',
+    element: <Chat />,
+    loader: chatbotLoader
   }
   ])
 

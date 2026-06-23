@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import kophiLogo from "../assets/kophi.png"
 import userRound from "../assets/user-round.png"
 
@@ -23,10 +24,13 @@ function NavBar() {
                             <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Community</a>
                         </li>
                         <li>
+
                             <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Popular</a>
                         </li>
                         <li>
-                            <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Settings</a>
+                            <Link to='/chat'>
+                                <a className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Chat</a>
+                            </Link>
                         </li>
                     </ul>
                     <div className="ml-7 flex items-center">
