@@ -2,7 +2,7 @@ import HomePage, { modulesLoader } from "./pages/HomePage/HomePage"
 import Profile, { userLoader } from "./pages/Profile/Profile"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import NotFoundPage from "./pages/NotFound/NotFoundPage"
-import Sections from "./pages/ModuleDetail/Sections"
+import Sections, { sectionsLoader } from "./pages/ModuleDetail/Sections"
 import Section from "./pages/ModuleDetail/Section"
 import ModulePreview, { moduleLoader } from "./pages/ModuleDetail/ModulePreview"
 
@@ -24,8 +24,9 @@ function App() {
     loader: userLoader
   },
   {
-    path: '/sections',
+    path: '/sections/:moduleId',
     element: <Sections />,
+    loader: sectionsLoader,
     children:
       [
         {

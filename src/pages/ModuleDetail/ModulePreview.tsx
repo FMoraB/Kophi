@@ -35,7 +35,9 @@ function ModulePreview() {
                         <h2>{data.module.description}</h2>
                     </div>
                     <div className="flex gap-5 mt-5">
-                        <button className="bg-[#3F75FF] text-white p-2 rounded-md cursor-pointer">Start Module</button>
+                        <Link to={`/sections/${data.module.id}`}>
+                         <button className="bg-[#3F75FF] text-white p-2 rounded-md cursor-pointer">Start Module</button>
+                        </Link>
                         <button className="bg-white text-black p-2 rounded-md border-black border cursor-pointer">Add to Wishlist</button>
                     </div>
                     <div className=" bg-[#B3B3B3] rounded-md mt-20 mb-20 p-12">
