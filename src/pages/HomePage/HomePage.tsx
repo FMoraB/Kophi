@@ -17,8 +17,6 @@ function HomePage() {
     const popularModules = useMemo<Module[]>(() => data.modules.filter((module: Module) => module.type === "Popular"), [data.modules])
     const exploreModules = data.modules
 
-
-
     return (
         <>
             <NavBar />

@@ -1,4 +1,5 @@
-import { useParams } from "react-router-dom"
+import { useParams, useLoaderData} from "react-router-dom"
+import type { LoaderFunctionArgs } from "react-router-dom";
 
 
 export default function Section() {
@@ -12,3 +13,5 @@ export default function Section() {
        
     )
 }
+
+
