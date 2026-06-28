@@ -1,5 +1,6 @@
 import { Link } from "react-router";
 import type { Module } from "../ModuleComponents/Module";
+import { getUser } from "../../types/user";
 export interface ModuleCardProps {
     image: string;
     title: string;
@@ -7,13 +8,17 @@ export interface ModuleCardProps {
 }
 
 function ModuleCard({ image, title, Module }: ModuleCardProps) {
+    const activeUser = getUser();
 
+    const link = activeUser
+        ? `/modules/${Module.id}`
+        : "/login";
 
     return (
         <>
 
 
-            <Link to={`/modules/${Module.id}`}>
+            <Link to={link}>
                 <div className={`relative h-[160px] rounded-xl p-6 flex flex-col justify-between overflow-hidden shadow-sm border border-gray-100/50 bg-white text-[#505050]`}>
                     <div className="z-10">
                         <h2 className={`text-xl font-bold tracking-tight uppercase max-w-[80%] leading-snug font-sans text-[#505050]`}>

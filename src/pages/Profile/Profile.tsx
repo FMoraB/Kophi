@@ -130,7 +130,7 @@ export default function Profile() {
                         <button className={
                             onActive
                                 ? "bg-[#3F75FF] text-white p-2 rounded-md border border-[#3F75FF] cursor-pointer"
-                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer transition-all hover:bg-gray-200"
                         } onClick={() => { setOnToggle('Completed'), setOnActive(true) }}>
                             Completed Modules
                         </button>
@@ -138,7 +138,7 @@ export default function Profile() {
                         <button className={
                             !onActive
                                 ? "bg-[#3F75FF] text-white p-2 rounded-md border border-[#3F75FF] cursor-pointer"
-                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer transition-all hover:bg-gray-200"
                         } onClick={() => { setOnToggle('WishList'), setOnActive(false) }}>
                             WishList
                         </button>
