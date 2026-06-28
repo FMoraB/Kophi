@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import kophiLogo from "../assets/kophi.png"
 import userRound from "../assets/user-round.png"
-import { Link } from "react-router"
 import { getUser } from "../types/user";
 
 
@@ -10,7 +9,7 @@ function NavBar() {
     const activeUser = getUser();
 
     const link = activeUser
-        ? `/profile/${activeUser.id}`
+        ? `/profile`
         : "/login";
 
     return (

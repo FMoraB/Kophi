@@ -1,12 +1,21 @@
 import NavBar from "../../components/NavBar"
-import { Link, type LoaderFunctionArgs } from "react-router"
+import { Link, type LoaderFunctionArgs, type ActionFunctionArgs } from "react-router"
 import { useLoaderData } from "react-router-dom"
 import { ChevronLeft } from 'lucide-react'
+import { getUser } from "../../types/user"
+import { useState } from "react"
 
 
 function ModulePreview() {
     //instead of using useEffect, we can use useLoaderData to get the data
     const data = useLoaderData<any>()
+
+    const [isItOnWishList, setIsItOnWishList] = useState<boolean>(data.isOnWishList);
+
+    const handleWishlist = async () => {
+        const result = await wishListAdd(data.module.id);
+        setIsItOnWishList(!isItOnWishList);
+    };
 
     if (!data.module) {
         return (
@@ -15,6 +24,8 @@ function ModulePreview() {
             </div>
         )
     }
+
+
 
     return (
         <>
@@ -36,9 +47,14 @@ function ModulePreview() {
                     </div>
                     <div className="flex gap-5 mt-5">
                         <Link to={`/sections/${data.module.id}`}>
-                         <button className="bg-[#3F75FF] text-white p-2 rounded-md cursor-pointer">Start Module</button>
+                            <button className="bg-[#3F75FF] text-white p-2 rounded-md cursor-pointer">Start Module</button>
                         </Link>
-                        <button className="bg-white text-black p-2 rounded-md border-black border cursor-pointer">Add to Wishlist</button>
+                        <button className={
+                            isItOnWishList
+                                ? "bg-white text-[#3F75FF] p-2 rounded-md border border-[#3F75FF] cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                        }
+                            onClick={() => { (wishListAdd(data.module.id)), setIsItOnWishList(!isItOnWishList) }}>{isItOnWishList ? "Wishlisted" : "Add to Wishlist"}</button>
                     </div>
                     <div className=" bg-[#B3B3B3] rounded-md mt-20 mb-20 p-12">
                         <h3 className="font-bold text-2xl text-white mb-5">About this module</h3>
@@ -60,7 +76,7 @@ function ModulePreview() {
                                 </div>
                                 <div>
                                     <p className="font-semibold text-lg">Age Range</p>
-                                    <p>{data.module.ageRange}</p>
+                                    <p>{data.module.age_range}</p>
                                 </div>
                             </div>
                         </div>
@@ -75,16 +91,56 @@ function ModulePreview() {
 }
 
 export const moduleLoader = async ({ params }: LoaderFunctionArgs) => {
+
     const moduleData = await fetch(`http://localhost:3000/api/modules/${params.id}`)
     const rawData = await moduleData.json()
     if (!rawData) {
         return { module: null }
     }
-    const module = {
-        ...rawData,
-        ageRange: rawData.age_range
-    }
-    return { module }
+    const module = rawData;
+
+    const isOnWishList = await isItOnWishList(Number(params.id));
+
+    return { module, isOnWishList }
 }
+
+export const wishListAdd = async (moduleId: number) => {
+    const user = getUser();
+
+    const response = await fetch(
+        `http://localhost:3000/api/users/${user.id}/wishList/${moduleId}`,
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
+    );
+
+    const result = await response.json();
+
+    if (!response.ok) {
+        return result;
+    }
+
+    console.log(result);
+
+    return { message: "Se agrego el modulo a tu WishList con exito!" };
+
+}
+
+export const isItOnWishList = async (moduleId: number) => {
+    const user = getUser();
+
+    const response = await fetch(
+        `http://localhost:3000/api/users/${user.id}/wishList`
+    );
+
+    const wishlist = await response.json();
+
+    return wishlist.some(
+        (module: any) => module.id === moduleId
+    );
+};
 
 export default ModulePreview

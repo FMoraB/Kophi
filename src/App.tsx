@@ -20,7 +20,7 @@ function App() {
     loader: modulesLoader,
     errorElement: <NotFoundPage />
   }, {
-    path: '/profile/:userId',
+    path: '/profile',
     element: <Profile />,
     loader: userLoader
   },

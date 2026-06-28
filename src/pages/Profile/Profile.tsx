@@ -7,24 +7,25 @@ import ModuleCard from "./component/moduleCard";
 import type { Module } from "../../types/module";
 import { useState } from "react";
 import { logout } from "../../types/user";
+import { getUser } from "../../types/user";
 
 
 export default function Profile() {
-
     const [onToggle, setOnToggle] = useState<string>("Completed")
+    const [onActive, setOnActive] = useState<boolean>(true);
     const navigate = useNavigate();
     const data = useLoaderData<any>();
     console.log(data);
 
+
     const handleLogOut = () => {
         logout(),
-        navigate('/')
+            navigate('/')
     }
 
     return (
         <>
             <NavBar />
-
             <div className="bg-gray-100 min-h-screen pt-24 pb-10">
                 <div className="max-w-7xl mx-auto px-4">
                     <Link to="/">
@@ -95,22 +96,22 @@ export default function Profile() {
                             <p className="text-center max-w-xl mt-8 text-gray-700">
                                 Passionate learner exploring technology and AI.
                             </p>
-                            
+
                             <div className="flex flex-col justify-center gap-3">
                                 <p className="mt-8 text-md w-full text-center">Preferred Tags:</p>
                                 <div className="flex flex-wrap justify-center gap-2">
-                                {data.user.tags.map((tag: Tag) => (
-                                    <span
-                                        key={tag.id}
-                                        className="px-3 py-1 rounded-full bg-purple-100 text-sm
+                                    {data.tags.map((tag: Tag) => (
+                                        <span
+                                            key={tag.id}
+                                            className="px-3 py-1 rounded-full bg-purple-100 text-sm
                                         "
-                                    >
-                                        {tag.name}
-                                    </span>
-                                ))}
+                                        >
+                                            {tag.name}
+                                        </span>
+                                    ))}
+                                </div>
                             </div>
-                            </div>
-                            
+
 
                             <div className="mt-8 text-center">
                                 <p>
@@ -126,11 +127,19 @@ export default function Profile() {
                         </div>
                     </div>
                     <div className="flex gap-4 mt-12">
-                        <button className="px-6 py-2 border rounded-md bg-white " onClick={() => setOnToggle('Completed')}>
+                        <button className={
+                            onActive
+                                ? "bg-[#3F75FF] text-white p-2 rounded-md border border-[#3F75FF] cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                        } onClick={() => { setOnToggle('Completed'), setOnActive(true) }}>
                             Completed Modules
                         </button>
 
-                        <button className="px-6 py-2 border rounded-md bg-white " onClick={() => setOnToggle('WishList')}>
+                        <button className={
+                            !onActive
+                                ? "bg-[#3F75FF] text-white p-2 rounded-md border border-[#3F75FF] cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                        } onClick={() => { setOnToggle('WishList'), setOnActive(false) }}>
                             WishList
                         </button>
                     </div>
@@ -150,34 +159,40 @@ export default function Profile() {
                         ))}
                     </div>
                     <button className="text-black cursor-pointer mb-10 flex items-center" onClick={() => handleLogOut()}>
-                            Log out
+                        Log out
                     </button>
                 </div>
-                
+
             </div>
         </>
     );
 }
 
 
-export const userLoader = async ({ params }: LoaderFunctionArgs) => {
+export const userLoader = async () => {
+    const currentUser = getUser();
 
     const userFetch = await fetch(
-        `http://localhost:3000/api/users/${params.userId}`
+        `http://localhost:3000/api/users/${currentUser.id}`
     );
 
     const completedModulesFetch = await fetch(
-        `http://localhost:3000/api/users/${params.userId}/completedModules`
+        `http://localhost:3000/api/users/${currentUser.id}/completedModules`
     );
 
     const wishlistFetch = await fetch(
-        `http://localhost:3000/api/users/${params.userId}/wishList`
+        `http://localhost:3000/api/users/${currentUser.id}/wishList`
+    );
+
+    const tagsFetch = await fetch(
+        `http://localhost:3000/api/users/${currentUser.id}/tags`
     );
 
     const user = await userFetch.json();
     const completedModules = await completedModulesFetch.json();
     const wishList = await wishlistFetch.json();
+    const tags = await tagsFetch.json();
 
-    return { user, completedModules, wishList };
+    return { user, completedModules, wishList, tags };
 
 };

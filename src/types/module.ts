@@ -1,4 +1,7 @@
-import type { Tag } from "../components/ModuleComponents/Tag"
+export interface Tag{
+    id: number,
+    name: string
+}
 
 export interface Module {
     age_range: string,
@@ -13,3 +16,4 @@ export interface Module {
     title: string,
     views: number
 }
+
