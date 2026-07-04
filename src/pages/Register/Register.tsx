@@ -1,5 +1,5 @@
 import { Form, redirect, useActionData, useNavigation, Link } from "react-router"
-import NavBar from "../../components/NavBar";
+import NavBar from "../../layouts/NavBar";
 import type { ActionFunctionArgs } from "react-router";
 
 export default function Register() {

@@ -2,7 +2,7 @@ import { Link, useParams, useLoaderData, redirect, useNavigate } from "react-rou
 import type { LoaderFunctionArgs } from "react-router-dom";
 import type { Section } from "../../types/section";
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-import NavBar from "../../components/NavBar";
+import NavBar from "../../layouts/NavBar";
 import { useState } from "react";
 import SectionDetails from "./Section";
 import { getUser } from "../../types/user";

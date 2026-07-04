@@ -1,6 +1,6 @@
 import { Form, redirect, useActionData, useNavigation, Link } from "react-router";
 import type { ActionFunctionArgs } from "react-router";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../layouts/NavBar";
 
 export default function Login() {
     const data = useActionData<any>();

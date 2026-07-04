@@ -1,24 +1,24 @@
 import { useMemo } from "react"
 import { useLoaderData } from "react-router-dom"
 
-import NavBar from "../../components/NavBar"
-import MainBanner from "../../components/Home/MainBanner"
-import ModuleList from "../../components/Home/ModuleList"
-import ExploreList from "../../components/Home/ExploreList"
-import type { Module } from "../../components/ModuleComponents/Module"
+import NavBar from "../../layouts/NavBar"
+import MainBanner from "./components/MainBanner"
+import ModuleList from "./components/ModuleList"
+import ExploreList from "./components/ExploreList"
+import type { Module } from "../../types/module"
 import bannerImg from "../../assets/banner.jpg"
-import Footer from "../../components/Footer"
+import Footer from "../../layouts/Footer"
 import { socialMedia } from "../../components/socialData"
 
 function HomePage() {
     const data = useLoaderData<any>()
 
-    const recommendedModules = useMemo<Module[]>(() => data.modules.filter((module: Module) => module.type === "Recommended"), [data.modules])
-    const popularModules = useMemo<Module[]>(() => data.modules.filter((module: Module) => module.type === "Popular"), [data.modules])
-    const exploreModules = data.modules
+    const recommendedModules = useMemo<Module[]>(() => data.rawModules.filter((module: Module) => module.module_types_id === 3), [data.rawModules])
+    const popularModules = useMemo<Module[]>(() => data.rawModules.filter((module: Module) => module.module_types_id === 2), [data.rawModules])
+    const exploreModules = data.rawModules
 
     return (
-        <>
+        <div>
             <NavBar />
             <div className="pt-20">
                 <MainBanner title="Learn about AI now" description="Learn on a simple way how the AI improves our daily life" image={bannerImg} />
@@ -34,7 +34,7 @@ function HomePage() {
             <footer>
                 <Footer socialMedia={socialMedia} />
             </footer>
-        </>
+        </div>
     )
 }
 
@@ -42,28 +42,7 @@ export const modulesLoader = async () => {
     const modulesData = await fetch(`http://localhost:3000/api/modules`)
     const rawModules = await modulesData.json()
     
-    const TYPE_MAP: Record<number, string> = {
-        1: "Default",
-        2: "Popular",
-        3: "Recommended",
-    }
-    
-    const modules = rawModules.map((raw: any) => ({
-        id: raw.id,
-        title: raw.title,
-        image: raw.image,
-        description: raw.description,
-        type: TYPE_MAP[raw.module_types_id] ?? "Default",
-        sections: [],
-        tags: [],
-        difficulty: raw.difficulty,
-        language: raw.language,
-        duration: raw.duration,
-        ageRange: raw.age_range,
-        views: raw.views,
-    }))
-    
-    return { modules }
+    return { rawModules }
 }
 
 export default HomePage

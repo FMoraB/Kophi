@@ -1,4 +1,4 @@
-import NavBar from "../../components/NavBar"
+import NavBar from "../../layouts/NavBar"
 import { Link, type LoaderFunctionArgs, type ActionFunctionArgs } from "react-router"
 import { useLoaderData } from "react-router-dom"
 import { ChevronLeft } from 'lucide-react'

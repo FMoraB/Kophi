@@ -1,6 +1,6 @@
 import { Link } from "react-router";
-import type { Module } from "../ModuleComponents/Module";
-import { getUser } from "../../types/user";
+import type { Module } from "../../../types/module";
+import { getUser } from "../../../types/user";
 export interface ModuleCardProps {
     image: string;
     title: string;

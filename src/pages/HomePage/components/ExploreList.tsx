@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Module } from "../ModuleComponents/Module"
+import type { Module } from "../../../types/module";
 import ModuleCard from "./ModuleCard"
 
 interface ExploreListProps {

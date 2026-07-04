@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 import { ChevronLeft } from 'lucide-react';
-import NavBar from '../components/NavBar';
+import NavBar from '../layouts/NavBar';
 import kophiLogo from '../assets/kophi.png';
 
 interface Message {
