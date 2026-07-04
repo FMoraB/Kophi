@@ -1,7 +1,7 @@
 import { Link, useParams, useLoaderData, redirect, Navigate, useNavigate } from "react-router-dom"
 import type { LoaderFunctionArgs } from "react-router-dom";
 import type { Tag } from "../../types/tag";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../layouts/NavBar";
 import { ChevronLeft } from 'lucide-react'
 import ModuleCard from "./component/moduleCard";
 import type { Module } from "../../types/module";

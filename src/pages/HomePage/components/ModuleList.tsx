@@ -1,4 +1,4 @@
-import type { Module } from "../ModuleComponents/Module"
+import type { Module } from "../../../types/module"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper';
 import { useState } from "react";

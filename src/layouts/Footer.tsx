@@ -1,4 +1,4 @@
-import type { socialMedia } from "./socialData"
+import type { socialMedia } from "../components/socialData"
 
 export interface FooterProps {
     socialMedia: socialMedia[]

@@ -2,7 +2,7 @@ import { useActionData, useNavigation } from "react-router";
 import { Form, useLoaderData, redirect } from "react-router-dom";
 import type { ActionFunctionArgs } from "react-router-dom";
 import type { Tag } from "../../types/tag";
-import NavBar from "../../components/NavBar";
+import NavBar from "../../layouts/NavBar";
 
 export default function Tags() {
     const data = useLoaderData<any>();

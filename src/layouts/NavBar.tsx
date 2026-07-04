@@ -37,8 +37,8 @@ function NavBar() {
                             <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Popular</a>
                         </li>
                         <li>
-                            <Link to='/chat'>
-                                <a className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Chat</a>
+                            <Link to='/chat' className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">
+                                Chat
                             </Link>
                         </li>
                     </ul>
