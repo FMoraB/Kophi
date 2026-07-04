@@ -47,7 +47,7 @@ export default function Profile() {
                         <div className="relative flex flex-col items-center px-6 pb-12">
 
                             <img
-                                src="https://i.pravatar.cc/250"
+                                src="https://i.pravatar.cc/250?img=48"
                                 alt="profile"
                                 className="
                                     w-40

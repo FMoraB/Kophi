@@ -121,5 +121,5 @@ export const tagsAction = async ({ request, params }: ActionFunctionArgs) => {
         return result;
     }
 
-    return redirect(`/profile/${params.userId}`);
+    return redirect(`/profile`);
 };
