@@ -52,7 +52,7 @@ function ModulePreview() {
                         <button className={
                             isItOnWishList
                                 ? "bg-white text-[#3F75FF] p-2 rounded-md border border-[#3F75FF] cursor-pointer"
-                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer"
+                                : "bg-white text-black p-2 rounded-md border border-black cursor-pointer "
                         }
                             onClick={() => { (wishListAdd(data.module.id)), setIsItOnWishList(!isItOnWishList) }}>{isItOnWishList ? "Wishlisted" : "Add to Wishlist"}</button>
                     </div>
