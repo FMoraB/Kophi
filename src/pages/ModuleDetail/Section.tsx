@@ -9,18 +9,19 @@ interface SectionProps{
 export default function SectionDetails( {section}: SectionProps ) {
 
     return(
-        <div className="flex flex-col gap-10">
-            <h1 className="text-xl font-semibold">{section.title}</h1>
-            <div className="flex flex-col gap-8">
-                    <img src={section.image} alt={section.title} className="w-full h-100 object-cover" />
-                    <div>
-                        <p>{section.description}</p>
-                    </div>
+        <div className="flex flex-col gap-6 w-full">
+            <h1 className="text-xl md:text-2xl font-semibold">{section.title}</h1>
+            <div className="flex flex-col gap-6">
+                <img
+                    src={section.image}
+                    alt={section.title}
+                    className="w-full h-60 sm:h-72 md:h-96 rounded-2xl object-cover"
+                />
+                <div className="prose prose-sm sm:prose-base max-w-none text-gray-800">
+                    <p>{section.description}</p>
+                </div>
             </div>
-            <>
-            </>
         </div>
-       
     )
 }
 
