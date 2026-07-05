@@ -40,7 +40,12 @@ function ModuleList({ title, subtitle, modules }: ModuleListProps) {
                 <div className="flex-1 min-w-0 mx-4">
                     <Swiper
                         spaceBetween={24}
-                        slidesPerView={3}
+                        slidesPerView={2}
+                        breakpoints={{
+                            640: {
+                                slidesPerView: 3,
+                            },
+                        }}
                         loop={canLoop}
                         onSwiper={(swiper) => setSwiperInstance(swiper)}
                         className="w-full"
@@ -48,7 +53,6 @@ function ModuleList({ title, subtitle, modules }: ModuleListProps) {
                         {slidesToRender.map((module, index) => (
                             <SwiperSlide key={`${module.id}-${index}`}>
                                 <ModuleCard
-                                    image={module.image}
                                     title={module.title}
                                     Module={module}
                                 />
