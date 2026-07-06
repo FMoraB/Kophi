@@ -70,27 +70,22 @@ export default function Profile() {
 
                             <div className="flex gap-16 mt-8 text-center">
                                 <div>
-                                    <p className="text-5xl font-bold">20</p>
-                                    <p className="text-sm text-gray-500">
-                                        Day streak
-                                    </p>
-                                </div>
-
-                                <div>
-                                    <p className="text-5xl font-bold">15</p>
-                                    <p className="text-sm text-gray-500">
-                                        Hours
-                                    </p>
-                                </div>
-
-                                <div>
                                     <p className="text-5xl font-bold">
                                         {data.completedModules.length}
                                     </p>
                                     <p className="text-sm text-gray-500">
-                                        Modules
+                                        Completed Modules
                                     </p>
                                 </div>
+                                
+                                <div>
+                                    <p className="text-5xl font-bold">{data.wishList.length}</p>
+                                    <p className="text-sm text-gray-500">
+                                        Wishlisted Modules
+                                    </p>
+                                </div>
+
+                                
                             </div>
 
                             <p className="text-center max-w-xl mt-8 text-gray-700">
@@ -158,9 +153,11 @@ export default function Profile() {
                             />
                         ))}
                     </div>
-                    <button className="text-black cursor-pointer mb-10 flex items-center" onClick={() => handleLogOut()}>
+                    <div className="flex justify-end mt-6">
+                    <button className="text-red-700 cursor-pointer mb-10 flex items-center border border-red-700 py-1 px-2 rounded-md justify-end" onClick={() => handleLogOut()}>
                         Log out
                     </button>
+                    </div>
                 </div>
 
             </div>

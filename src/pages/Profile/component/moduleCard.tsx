@@ -1,15 +1,20 @@
 
 import type { Module } from "../../../types/module";
 import { redirect, Link } from "react-router-dom";
+import { getUser } from "../../../types/user";
 
 type Props = {
     module: Module;
 };
 
 export default function ModuleCard({ module }: Props) {
+
+const activeUser = getUser();
+const link = activeUser ? `/modules/${module.id}` : "/login";
+
     return (
         <div>
-            <Link to={`/modules/${module.id}`}>
+            <Link to={link}>
                 <div
                     className="
                 bg-white
@@ -29,7 +34,7 @@ export default function ModuleCard({ module }: Props) {
                         className="
                     w-full
                     md:w-80
-                    h-45
+                    h-65
                     object-cover
                     rounded-md
                 "
