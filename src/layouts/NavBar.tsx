@@ -24,7 +24,7 @@ function NavBar() {
                         <span className='text-[#3F75FF] font-extrabold font-sans'>Kophi</span>
                     </a>
                 </div>
-                
+
                 {/* Mobile Menu Button */}
                 <div className="md:hidden flex items-center">
                     <button onClick={toggleMenu} className="text-gray-700 hover:text-[#3F75FF] focus:outline-none transition-colors">
