@@ -6,7 +6,7 @@ import MainBanner from "./components/MainBanner"
 import ModuleList from "./components/ModuleList"
 import ExploreList from "./components/ExploreList"
 import type { Module } from "../../types/module"
-import bannerImg from "../../assets/banner.jpg"
+import bannerImg from "../../assets/KophiBan.svg"
 import Footer from "../../layouts/Footer"
 import { socialMedia } from "../../components/socialData"
 
@@ -41,7 +41,7 @@ function HomePage() {
 export const modulesLoader = async () => {
     const modulesData = await fetch(`http://localhost:3000/api/modules`)
     const rawModules = await modulesData.json()
-    
+
     return { rawModules }
 }
 
