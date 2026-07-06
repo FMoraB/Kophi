@@ -2,8 +2,7 @@ import HomePage, { modulesLoader } from "./pages/HomePage/HomePage"
 import Profile, { userLoader } from "./pages/Profile/Profile"
 import { createBrowserRouter, RouterProvider } from "react-router"
 import NotFoundPage from "./pages/NotFound/NotFoundPage"
-import Sections, { completeModulesAdd, sectionsLoader } from "./pages/ModuleDetail/Sections"
-import Section from "./pages/ModuleDetail/Section"
+import Sections, { sectionsLoader } from "./pages/ModuleDetail/Sections"
 import ModulePreview, { moduleLoader } from "./pages/ModuleDetail/ModulePreview"
 
 
@@ -12,6 +11,7 @@ import Register, { registerAction } from "./pages/Register/Register"
 import Login, { loginAction } from "./pages/Login/Login"
 import Tags, { tagsAction, tagsLoader } from "./pages/Register/Tags"
 import Chat, { chatbotLoader } from "./pages/Chatbot"
+import Popular from "./pages/Popular/Popular"
 
 function App() {
   const router = createBrowserRouter([{
@@ -55,6 +55,12 @@ function App() {
     path: '/chat',
     element: <Chat />,
     loader: chatbotLoader
+  },
+  {
+    path: '/popular',
+    element: <Popular />,
+    loader: modulesLoader,
+    errorElement: <NotFoundPage />
   }
   ])
 

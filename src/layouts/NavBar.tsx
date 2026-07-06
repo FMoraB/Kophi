@@ -42,7 +42,9 @@ function NavBar() {
                             <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Community</a>
                         </li>
                         <li>
-                            <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Popular</a>
+                            <Link to='/popular' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>
+                                Popular
+                            </Link>
                         </li>
                         <li>
                             <Link to='/chat' className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">
@@ -69,7 +71,9 @@ function NavBar() {
                             <a href="/" className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>Community</a>
                         </li>
                         <li>
-                            <a href="/" className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>Popular</a>
+                            <Link to='/popular' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>
+                                Popular
+                            </Link>
                         </li>
                         <li>
                             <Link to='/chat' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>

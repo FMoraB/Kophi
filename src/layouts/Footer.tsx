@@ -6,7 +6,14 @@ export interface FooterProps {
 
 function Footer({ socialMedia }: FooterProps) {
     return (
-        <div className="flex flex-items justify-center items-center pb-10">
+        
+        <div className="flex flex-col justify-center items-center pb-10">
+            <div className="flex flex-row items-center gap-6 p-6">
+                <p className="text-gray-600 font-light">About Kophi</p>
+                <p className="text-gray-600 font-light">About Us</p>
+                <p className="text-gray-600 font-light">Help</p>
+                <p className="text-gray-600 font-light">Accessibility</p>
+            </div>
             <div className="flex flex-col items-center gap-4">
                 <div className="flex items-center gap-6">
                     {socialMedia.map((social) => (
@@ -15,7 +22,7 @@ function Footer({ socialMedia }: FooterProps) {
                         </a>
                     ))}
                 </div>
-                <p>©Kophi, 2026</p>
+                <p className="text-gray-500 text-sm pt-4">©Kophi, 2026</p>
             </div>
         </div>
 
