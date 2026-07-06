@@ -10,6 +10,7 @@ function NavBar() {
     const activeUser = getUser();
 
     const link = activeUser ? `/profile` : "/login";
+    const linkCreate = activeUser ? `/create-module` : "/login";
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
@@ -39,10 +40,12 @@ function NavBar() {
                             <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Home</a>
                         </li>
                         <li>
-                            <a href="/" className="font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">Community</a>
+                            <Link to={linkCreate} className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">
+                                Create
+                            </Link>
                         </li>
                         <li>
-                            <Link to='/popular' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>
+                            <Link to='/popular' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors">
                                 Popular
                             </Link>
                         </li>
@@ -68,7 +71,9 @@ function NavBar() {
                             <a href="/" className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>Home</a>
                         </li>
                         <li>
-                            <a href="/" className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>Community</a>
+                            <Link to={linkCreate} className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>
+                                Create
+                            </Link>
                         </li>
                         <li>
                             <Link to='/popular' className="block font-semibold text-gray-700 hover:text-[#3F75FF] transition-colors" onClick={toggleMenu}>
