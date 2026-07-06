@@ -2,8 +2,6 @@ import { Form, useActionData, useNavigation, redirect } from "react-router-dom";
 import type { ActionFunctionArgs } from "react-router-dom";
 import NavBar from "../../layouts/NavBar";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
-
 export default function CreateModule() {
     const actionData = useActionData<{ message?: string }>();
     const navigation = useNavigation();
@@ -150,7 +148,7 @@ export const createModuleAction = async ({ request }: ActionFunctionArgs) => {
         views: 0,
     };
 
-    const response = await fetch(`${API_URL}/api/modules`, {
+    const response = await fetch(`http://localhost:3000/api/modules`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
