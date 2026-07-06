@@ -36,7 +36,6 @@ function ExploreList({ title, modules }: ExploreListProps) {
                 {exploreModules.map((module) => (
                     <ModuleCard
                         key={module.id}
-                        image={module.image}
                         title={module.title}
                         Module={module}
                     />

@@ -40,7 +40,7 @@ function ModuleList({ title, subtitle, modules }: ModuleListProps) {
                 <div className="flex-1 min-w-0 mx-4">
                     <Swiper
                         spaceBetween={24}
-                        slidesPerView={2}
+                        slidesPerView={1}
                         breakpoints={{
                             640: {
                                 slidesPerView: 3,
